@@ -1,4 +1,3 @@
-Give it a star ⭐ and feel free to fork!
 # 🚀 PhishGuard AI — Phishing URL Detection System
 
 > A full-stack machine learning web application that detects phishing URLs in real-time using feature engineering and classification models.
