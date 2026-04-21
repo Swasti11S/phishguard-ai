@@ -1,0 +1,172 @@
+/* style.css — PhishGuard AI · Dark Terminal Aesthetic */
+:root {
+  --bg:        #0a0c10;
+  --surface:   #10141c;
+  --surface2:  #161b26;
+  --border:    #1e2738;
+  --border2:   #2a3450;
+  --amber:     #f5a623;
+  --amber-dim: #b87518;
+  --amber-glow:#f5a62330;
+  --green:     #39d98a;
+  --green-dim: #1a6640;
+  --green-glow:#39d98a25;
+  --red:       #ff4d6a;
+  --red-dim:   #7a1e2e;
+  --red-glow:  #ff4d6a25;
+  --text:      #e8ecf4;
+  --muted:     #6b7a99;
+  --dim:       #3d4f6e;
+  --mono:      'Space Mono', monospace;
+  --sans:      'DM Sans', sans-serif;
+  --r:         10px;
+  --r-lg:      16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ── Background ── */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:48px 48px;opacity:.35}
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,#f5a62314 0%,transparent 70%)}
+
+/* ── Layout ── */
+.container{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:48px 20px 60px}
+
+/* ── Header ── */
+.header{text-align:center;margin-bottom:32px}
+.logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:10px}
+.logo-icon{font-size:28px;color:var(--amber);filter:drop-shadow(0 0 10px var(--amber));animation:pulse 3s ease-in-out infinite}
+.logo-text{font-family:var(--mono);font-size:26px;font-weight:700;letter-spacing:-.5px}
+.logo-ai{color:var(--amber);font-size:13px;vertical-align:super;border:1px solid var(--amber-dim);padding:1px 5px;border-radius:4px;margin-left:4px}
+.tagline{font-size:13px;color:var(--muted);font-weight:300;letter-spacing:.3px}
+
+/* ── Tabs ── */
+.tabs{display:flex;gap:4px;margin-bottom:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:5px}
+.tab{flex:1;background:none;border:none;border-radius:var(--r);padding:10px 16px;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s}
+.tab:hover{color:var(--text);background:var(--surface2)}
+.tab.active{background:var(--surface2);color:var(--amber);border:1px solid var(--border2)}
+
+/* ── Tab Panels ── */
+.tab-panel{display:none}.tab-panel.active{display:block;animation:fadeUp .3s ease}
+
+/* ── Card ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px;position:relative;
+  box-shadow:0 0 0 1px var(--border),0 24px 64px rgba(0,0,0,.6);margin-bottom:16px}
+.card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--amber-dim),transparent)}
+.card-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:20px}
+
+/* ── Input ── */
+.input-group{display:flex;gap:10px;margin-bottom:14px}
+.input-wrapper{flex:1;position:relative;display:flex;align-items:center}
+.input-icon{position:absolute;left:14px;font-size:16px;opacity:.5;pointer-events:none}
+.url-input{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);
+  padding:14px 40px 14px 40px;font-family:var(--mono);font-size:13px;color:var(--text);outline:none;
+  transition:border-color .2s,box-shadow .2s}
+.url-input::placeholder{color:var(--dim)}
+.url-input:focus{border-color:var(--amber-dim);box-shadow:0 0 0 3px var(--amber-glow)}
+.clear-btn{position:absolute;right:12px;background:none;border:none;color:var(--dim);cursor:pointer;font-size:12px;padding:4px;display:none;transition:color .2s}
+.clear-btn:hover{color:var(--text)}.clear-btn.visible{display:block}
+.scan-btn{background:var(--amber);border:none;border-radius:var(--r);padding:14px 22px;
+  font-family:var(--sans);font-weight:600;font-size:14px;color:#0a0c10;cursor:pointer;
+  display:flex;align-items:center;gap:8px;white-space:nowrap;
+  transition:background .2s,transform .1s,box-shadow .2s;box-shadow:0 4px 20px var(--amber-glow)}
+.scan-btn:hover{background:#f7b84a;box-shadow:0 4px 28px rgba(245,166,35,.5)}
+.scan-btn:active{transform:scale(.97)}.scan-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ── Examples ── */
+.examples{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:24px}
+.examples-label{font-size:11px;color:var(--dim);font-family:var(--mono);letter-spacing:1px}
+.example-pill{background:var(--surface2);border-radius:100px;padding:5px 12px;font-family:var(--mono);font-size:11px;cursor:pointer;transition:all .2s}
+.example-pill.safe{border:1px solid var(--green-dim);color:var(--green)}
+.example-pill.safe:hover{background:var(--green-glow)}
+.example-pill.phishing{border:1px solid var(--red-dim);color:var(--red)}
+.example-pill.phishing:hover{background:var(--red-glow)}
+
+/* ── Loader ── */
+.loader{display:none;margin:20px 0}.loader.visible{display:block}
+.loader-bar{height:2px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.loader-bar::after{content:'';display:block;height:100%;width:40%;background:var(--amber);border-radius:2px;animation:slide 1.2s ease-in-out infinite}
+.loader-text{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;animation:blink 1s step-end infinite}
+
+/* ── Result panel ── */
+.result-panel{display:none;animation:fadeUp .4s ease}.result-panel.visible{display:block}
+.verdict{display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:var(--r);margin-bottom:22px;border:1px solid}
+.verdict.safe{background:var(--green-glow);border-color:var(--green-dim)}
+.verdict.phishing{background:var(--red-glow);border-color:var(--red-dim)}
+.verdict-icon{font-size:32px;line-height:1}
+.verdict-text{flex:1;min-width:0}
+.verdict-label{font-family:var(--mono);font-weight:700;font-size:18px;letter-spacing:1px}
+.verdict.safe .verdict-label{color:var(--green)}.verdict.phishing .verdict-label{color:var(--red)}
+.verdict-url{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.verdict-confidence{font-family:var(--mono);font-size:13px;color:var(--muted);text-align:right;white-space:nowrap}
+.verdict-confidence span{display:block;font-size:22px;font-weight:700}
+.verdict.safe .verdict-confidence span{color:var(--green)}.verdict.phishing .verdict-confidence span{color:var(--red)}
+
+/* ── Features ── */
+.features-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:12px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.feature-item{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.feature-name{font-size:12px;color:var(--muted)}
+.feature-value{font-family:var(--mono);font-size:12px;font-weight:700}
+.feature-value.bad{color:var(--red)}.feature-value.ok{color:var(--green)}.feature-value.neutral{color:var(--amber)}
+
+/* ── Error ── */
+.error-msg{display:none;background:var(--red-glow);border:1px solid var(--red-dim);color:var(--red);
+  padding:12px 16px;border-radius:var(--r);font-size:13px;margin-top:16px}
+.error-msg.visible{display:block}
+
+/* ── Info grid ── */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:0}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 16px;text-align:center}
+.info-icon{font-size:22px;margin-bottom:8px}
+.info-title{font-family:var(--mono);font-size:12px;color:var(--amber);margin-bottom:6px}
+.info-body{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* ── Metrics row (stats tab) ── */
+.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
+.metric-pill{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);padding:18px 16px;text-align:center;transition:border-color .3s}
+.metric-pill.loading{opacity:.5}
+.metric-pill.loaded{border-color:var(--amber-dim)}
+.metric-val{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--amber);margin-bottom:4px}
+.metric-name{font-size:11px;color:var(--muted);letter-spacing:.5px}
+
+/* ── Chart ── */
+.chart-wrapper{border-top:1px solid var(--border);padding-top:24px}
+.perf-chart{width:100%;border-radius:var(--r);border:1px solid var(--border)}
+.chart-missing{color:var(--muted);font-size:13px;padding:32px;text-align:center;background:var(--surface2);border-radius:var(--r)}
+.chart-missing code{color:var(--amber);font-family:var(--mono)}
+
+/* ── How it works ── */
+.how-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:8px}
+.how-step{display:flex;gap:20px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.how-num{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--amber-dim);min-width:44px;line-height:1}
+.how-title{font-family:var(--mono);font-size:13px;color:var(--amber);margin-bottom:8px}
+.how-body{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* ── Feature reference ── */
+.feature-ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px;margin-top:12px}
+.feature-ref{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.ref-name{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.5px}
+.ref-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ── Footer ── */
+.footer{text-align:center;margin-top:32px;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:1px}
+
+/* ── Animations ── */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes slide{0%{transform:translateX(-100%)}50%{transform:translateX(150%)}100%{transform:translateX(300%)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Responsive ── */
+@media(max-width:600px){
+  .input-group{flex-direction:column}.scan-btn{width:100%;justify-content:center}
+  .info-grid{grid-template-columns:1fr}.metrics-row{grid-template-columns:repeat(2,1fr)}
+  .card{padding:20px}.tabs{flex-direction:column}
+  .feature-ref-grid{grid-template-columns:1fr}
+}

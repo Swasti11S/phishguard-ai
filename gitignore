@@ -1,0 +1,49 @@
+# ── Python ────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Virtual environments ──────────────────────────
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# ── ML model binary (generate locally with train_model.py) ──
+model.pkl
+*.pkl
+*.joblib
+
+# ── Jupyter Notebooks ─────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── OS files ──────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE / Editor ──────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ── Environment variables ─────────────────────────
+.env
+.env.local
+*.env
+
+# ── Logs ──────────────────────────────────────────
+*.log
+logs/
+
+# ── Distribution / build ──────────────────────────
+dist/
+build/
+*.egg-info/
